@@ -19,7 +19,13 @@ public class Usuario {
 
     private Roles UserRoles;
 
-    Usuario(){}
+    public Usuario(){}
+
+    public Usuario(String userName, String email, String senha ){
+        this.userName = userName;
+        this.email = email;
+        this.senha = senha;
+    }
 
     public String getUserName() {
         return userName;
@@ -51,5 +57,9 @@ public class Usuario {
 
     public void setUserRoles(Roles userRoles) {
         UserRoles = userRoles;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
