@@ -10,10 +10,10 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class UsarioDetailsImplements implements UserDetails {
+public class UserDetailsImplements implements UserDetails {
     private final Usuario user;
 
-    public UsarioDetailsImplements(Usuario user){
+    public UserDetailsImplements(Usuario user){
         this.user = user;
     }
 
