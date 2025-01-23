@@ -20,8 +20,8 @@ public class SecurityConfig{
     @Autowired
     private UserSecurityFilter userSecurityFilter;
 
-    private static final String[] ENDPOINTS_NO_REQUIRED_AUTH = {
-            "auth/**"
+    public static final String[] ENDPOINTS_NO_REQUIRED_AUTH = {
+            "/auth"
     };
 
     @Bean
@@ -31,7 +31,7 @@ public class SecurityConfig{
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers(ENDPOINTS_NO_REQUIRED_AUTH).permitAll()
                         .anyRequest().authenticated())
-                //.addFilterBefore(userSecurityFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(userSecurityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
