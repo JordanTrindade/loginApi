@@ -16,12 +16,20 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig{
+public class SecurityConfig {
+
+    public SecurityConfig() {
+        System.out.println("SecurityConfig carregado!");
+    }
+
     @Autowired
     private UserSecurityFilter userSecurityFilter;
 
     public static final String[] ENDPOINTS_NO_REQUIRED_AUTH = {
-            "/auth"
+            "/auth",
+            "/ping",
+            "/auth/login",
+            "/auth/register"
     };
 
     @Bean
@@ -36,10 +44,11 @@ public class SecurityConfig{
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
