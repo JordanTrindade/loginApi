@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.login.api.security.userDetails.UsarioDetailsImplements;
+import com.login.api.security.userDetails.UserDetailsImplements;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -17,7 +17,7 @@ public class JWTTokenService {
     private final String issuer = "LOGIN-API";
     private final Algorithm algorithm = Algorithm.HMAC256(secret);
 
-    public String GerarToken(UsarioDetailsImplements user){
+    public String GerarToken(UserDetailsImplements user){
         try{
             return JWT.create()
                     .withSubject(user.getUsername())
@@ -30,7 +30,7 @@ public class JWTTokenService {
         }
     }
 
-    public String recuperarToken(String token){
+    public String recuperarUsuario(String token){
 
         try{
             return JWT.require(algorithm)
@@ -42,6 +42,21 @@ public class JWTTokenService {
             return null;
         }
 
+    }
+
+    public Boolean isTokenExpired(String token){
+        Instant date = JWT.require(algorithm)
+                .withIssuer(issuer)
+                .build()
+                .verify(token)
+                .getExpiresAtAsInstant();
+
+        return !date.isBefore(Instant.now());
+    }
+
+    public Boolean isTokenValid(String token, UserDetailsImplements userDetailsImplements){
+        String userName = recuperarUsuario(token);
+        return userName.equals(userDetailsImplements.getUsername()) && !isTokenExpired(token);
     }
 
     public Instant dataDeCriacao(){
