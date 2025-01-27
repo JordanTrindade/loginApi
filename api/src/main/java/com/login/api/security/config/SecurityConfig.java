@@ -18,10 +18,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    public SecurityConfig() {
-        System.out.println("SecurityConfig carregado!");
-    }
-
     @Autowired
     private UserSecurityFilter userSecurityFilter;
 
