@@ -1,9 +1,12 @@
 package com.login.api.dto;
 
 import com.login.api.entity.Usuario;
+import com.login.api.enums.Roles;
 
-public record UsuarioDto (String userName, String email, String senha){
+import javax.management.relation.Role;
+
+public record UsuarioDto (String userName, String email, String senha, Roles userRoles){
     public Usuario toUser() {
-        return new Usuario(userName, email, senha );
+        return new Usuario(userName, email, senha, userRoles );
     }
 }
