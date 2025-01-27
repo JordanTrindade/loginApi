@@ -17,14 +17,15 @@ public class Usuario {
 
     private String senha;
 
-    private Roles UserRoles;
+    private Roles userRoles;
 
     public Usuario(){}
 
-    public Usuario(String userName, String email, String senha ){
+    public Usuario(String userName, String email, String senha , Roles userRoles){
         this.userName = userName;
         this.email = email;
         this.senha = senha;
+        this.userRoles = userRoles;
     }
 
     public String getUserName() {
@@ -52,11 +53,11 @@ public class Usuario {
     }
 
     public Roles getUserRoles() {
-        return UserRoles;
+        return userRoles;
     }
 
     public void setUserRoles(Roles userRoles) {
-        UserRoles = userRoles;
+        this.userRoles = userRoles;
     }
 
     public Long getId() {
