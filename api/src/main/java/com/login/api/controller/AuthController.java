@@ -7,11 +7,10 @@ import com.login.api.entity.Usuario;
 import com.login.api.service.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriBuilder;
+
 
 import java.net.URI;
 
@@ -29,6 +28,7 @@ public class AuthController {
     public String auth(){
         return "auntenticacao liberado";
     }
+
     @PostMapping(value = "login")
     public ResponseEntity<RecoveryJwtTokenDto> Login(@RequestBody AuthRequestDTO request ){
         RecoveryJwtTokenDto token =  usuarioService.recoverTokenLogin(request);
